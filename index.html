@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DayNight Vending</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; }
+  header { display:flex; align-items:center; padding:10px; background:#2a5298; color:white; }
+  #logo { height:50px; margin-right:10px; }
+
+  /* Login */
+  #loginPage { height:100vh; width:100vw; display:flex; justify-content:center; align-items:center; background:linear-gradient(135deg,#1e3c72,#2a5298); }
+  #loginBox { background:white; padding:30px; border-radius:10px; width:300px; text-align:center; box-shadow:0 8px 16px rgba(0,0,0,0.3);}
+  #loginBox input { width:90%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc;}
+  #loginBox button { width:95%; padding:10px; margin-top:10px; border:none; border-radius:5px; background:#2a5298; color:white; cursor:pointer;}
+  #loginBox small { display:block; margin-top:10px; color:#555; cursor:pointer; text-decoration:underline; }
+  .card { padding:20px; margin:20px; border-radius:10px; background:#f5f5f5; box-shadow:0 4px 8px rgba(0,0,0,0.1);}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+  <div id="loginBox">
+    <h2>DayNight Vending</h2>
+    <input type="text" id="loginUsername" placeholder="Username">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button id="loginBtn" disabled>Login</button>
+    <small id="showRegisterLink">Create Account</small>
+
+    <div id="registerFields" style="display:none; margin-top:10px;">
+      <input type="text" id="regUsername" placeholder="Username">
+      <input type="password" id="regPassword" placeholder="Password">
+      <button id="registerBtn" disabled>Register</button>
+      <small id="showLoginLink">Back to Login</small>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="mainApp" style="display:none;">
+  <header>
+    <img src="assets/logo.png" alt="Logo" id="logo">
+    <h1>DayNight Vending</h1>
+  </header>
+
+  <!-- Inventory Section -->
+  <section id="inventorySection" class="card">
+    <h2>Inventory & Sales</h2>
+    <table id="inventoryTable">
+      <thead>
+        <tr><th>Name</th><th>Cost</th><th>Price</th><th>Qty</th><th>Profit</th><th>Status</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h3>Update Stock</h3>
+    <select id="inventorySelect"></select>
+    <input type="number" id="inventoryAddQty" placeholder="Quantity">
+    <button id="addStockBtn">Add Stock</button>
+
+    <h3>Add New Item</h3>
+    <input type="text" id="newItemName" placeholder="Name">
+    <input type="number" step="0.01" id="newItemCost" placeholder="Cost">
+    <input type="number" step="0.01" id="newItemPriceSingle" placeholder="Price Single">
+    <input type="number" step="0.01" id="newItemPriceBundle" placeholder="Price Bundle">
+    <input type="number" id="newItemQty" placeholder="Qty">
+    <button id="addNewItemBtn">Add Item</button>
+  </section>
+
+  <!-- Finance Section -->
+  <section id="financeSection" class="card">
+    <h2>Finance</h2>
+    <input type="number" id="moneySpent" placeholder="Money Spent $">
+    <input type="number" id="moneyEarned" placeholder="Money Earned $">
+    <button id="calculateFinanceBtn">Update</button>
+    <div id="financeResult"></div>
+  </section>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

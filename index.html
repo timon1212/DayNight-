@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DayNight Vending</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="DayNight Vending Logo" id="logo">
+    <h1>DayNight Vending</h1>
+  </header>
+
+  <!-- Inventory Section -->
+  <section id="inventorySection" class="card">
+    <h2>Inventory & Sales</h2>
+
+    <table id="inventoryTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Cost</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Profit</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div id="restockSuggestions"></div>
+
+    <!-- Add Stock Section -->
+    <h3>Update Stock</h3>
+    <label for="inventorySelect">Select Item:</label>
+    <select id="inventorySelect"></select>
+
+    <label for="inventoryAddQty">Quantity to Add:</label>
+    <input type="number" id="inventoryAddQty" placeholder="Enter quantity">
+
+    <button onclick="addInventoryStock()">Add Stock</button>
+  </section>
+
+  <!-- Finance Section -->
+  <section id="financeSection" class="card">
+    <h2>Finance & Analytics</h2>
+    <input type="number" id="moneySpent" placeholder="Money Spent $">
+    <input type="number" id="moneyEarned" placeholder="Money Earned $">
+    <button onclick="calculateFinance()">Update</button>
+    <div id="financeResult"></div>
+    <canvas id="financeChart"></canvas>
+  </section>
+
+  <!-- Routes Section -->
+  <section id="routesSection" class="card">
+    <h2>Routes & Maps</h2>
+    <select id="routeSelect"></select>
+    <input type="text" id="newRouteName" placeholder="New Route">
+    <button onclick="createNewRoute()">Create Route</button>
+    <div id="map" style="height:400px;"></div>
+    <input type="text" id="pinName" placeholder="Stop Name">
+    <input type="number" id="pinLat" placeholder="Latitude">
+    <input type="number" id="pinLng" placeholder="Longitude">
+    <button onclick="addPin()">Add Pin</button>
+    <div id="routePerformance"></div>
+  </section>
+
+  <!-- Drivers Section -->
+  <section id="driversSection" class="card">
+    <h2>Drivers & Leaderboards</h2>
+    <input type="text" id="newDriverName" placeholder="Driver Name">
+    <button onclick="addDriver(document.getElementById('newDriverName').value)">Add Driver</button>
+    <div id="driverPerformance"></div>
+    <div id="driverLeaderboard"></div>
+    <div id="driverEfficiency"></div>
+  </section>
+
+  <!-- Forms Section -->
+  <section id="formsSection" class="card">
+    <h2>Forms & Inspections</h2>
+    <input type="text" id="formField1" placeholder="Field 1">
+    <input type="text" id="formField2" placeholder="Field 2">
+    <input type="file" id="formPhoto" accept="image/*">
+    <button onclick="submitForm()">Submit Form</button>
+    <ul id="formSubmissions"></ul>
+  </section>
+
+  <!-- Gas Section -->
+  <section id="gasSection" class="card">
+    <h2>Gas Calculator</h2>
+    <select id="gasRouteSelect"></select>
+    <input type="number" id="vehicleMPG" placeholder="Vehicle MPG" value="15">
+    <input type="number" id="gasPrice" placeholder="Gas $/gal" value="3.50">
+    <button onclick="computeGas()">Calculate Gas</button>
+    <div id="gasResult"></div>
+
+    <h3>Weekly Fuel Forecast</h3>
+    <input type="number" id="forecastGasPrice" placeholder="Projected Gas $/gal" value="3.50">
+    <input type="number" id="forecastMPG" placeholder="Vehicle MPG" value="15">
+    <button onclick="weeklyFuelForecast(parseFloat(document.getElementById('forecastGasPrice').value), parseFloat(document.getElementById('forecastMPG').value))">Forecast Fuel</button>
+    <div id="fuelForecast"></div>
+
+    <h3>Optimal Routes Suggestions</h3>
+    <input type="number" id="optimalGasPrice" placeholder="Projected Gas $/gal" value="3.50">
+    <input type="number" id="optimalMPG" placeholder="Vehicle MPG" value="15">
+    <button onclick="suggestOptimalRoutes(parseFloat(document.getElementById('optimalMPG').value), parseFloat(document.getElementById('optimalGasPrice').value))">Suggest Routes</button>
+    <div id="optimalRoutes"></div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Inventory</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+  <a href="routes.html">Routes</a>
+  <a href="inventory.html">Inventory</a>
+  <a href="finance.html">Finance</a>
+  <a href="gas.html">Gas</a>
+  <a href="index.html" onclick="logout()">Logout</a>
+</div>
+
+<div class="content">
+<h2>Inventory</h2>
+<button onclick="addInventoryPrompt()">Add New Item</button>
+<div id="inventoryList"></div>
+</div>
+
+<script src="app.js"></script>
+<script>
+checkLogin();
+initDB().then(async()=>{ 
+  await populateInventorySelect(); 
+  displayInventoryList(); 
+});
+
+function logout() {
+  localStorage.removeItem("currentUser");
+  window.location.href = "index.html";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Routes</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+<body>
+<div class="sidebar">
+  <a href="routes.html">Routes</a>
+  <a href="inventory.html">Inventory</a>
+  <a href="finance.html">Finance</a>
+  <a href="gas.html">Gas</a>
+  <a href="index.html" onclick="logout()">Logout</a>
+</div>
+
+<div class="content">
+<h2>Routes & Delivery</h2>
+<select id="routeSelect" onchange="displayRoute()"></select><br>
+<input type="text" id="stopName" placeholder="Stop Name">
+<input type="text" id="stopAddress" placeholder="Address">
+<button onclick="addStop()">Add Stop</button><br>
+<input type="number" id="stockAmount" placeholder="Qty">
+<select id="inventorySelect"></select>
+<div id="routeList"></div>
+<div id="map" style="height:400px;"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="app.js"></script>
+<script>
+checkLogin();
+initDB().then(async()=>{
+  await initDefaults();
+  await populateRoutes();
+  await populateInventorySelect();
+  initMap();
+  displayRoute();
+});
+
+function logout() {
+  localStorage.removeItem("currentUser");
+  window.location.href = "index.html";
+}
+</script>
+</body>
+</html>

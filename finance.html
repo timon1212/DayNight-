@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Finance</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+  <a href="routes.html">Routes</a>
+  <a href="inventory.html">Inventory</a>
+  <a href="finance.html">Finance</a>
+  <a href="gas.html">Gas</a>
+</div>
+<div class="content">
+<h2>Finance</h2>
+<select id="financeRouteSelect"></select><br>
+<input type="number" id="financeTotal" placeholder="Total $"><br>
+<input type="text" id="financeNotes" placeholder="Notes"><br>
+<button onclick="submitFinance()">Submit</button>
+<div id="financeList"></div>
+</div>
+<script src="app.js"></script>
+<script>
+checkLogin();
+initDB().then(async()=>{
+  await populateFinanceRouteSelect();
+  displayFinance();
+});
+</script>
+</html>

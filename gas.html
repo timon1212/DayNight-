@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+  <a href="routes.html">Routes</a>
+  <a href="inventory.html">Inventory</a>
+  <a href="finance.html">Finance</a>
+  <a href="gas.html">Gas</a>
+  <a href="index.html" onclick="logout()">Logout</a>
+</div>
+
+<div class="content">
+<h2>Gas Tracking</h2>
+<button onclick="addGasUI()">Add Gas Entry</button>
+<div id="gasList"></div>
+</div>
+
+<script src="app.js"></script>
+<script>
+checkLogin();
+initDB().then(displayGas);
+
+function logout() {
+  localStorage.removeItem("currentUser");
+  window.location.href = "index.html";
+}
+</script>
+</body>
+</html>

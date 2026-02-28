@@ -1,0 +1,13 @@
+[
+  { "stop": "Covington A", "address": "123 Main St, Covington, LA", "lat": 30.4750, "lon": -90.1000 },
+  { "stop": "Covington B", "address": "456 Elm St, Covington, LA", "lat": 30.4780, "lon": -90.1050 },
+  { "stop": "Hammond A", "address": "789 Pine St, Hammond, LA", "lat": 30.5040, "lon": -90.4600 },
+  { "stop": "Hammond B", "address": "321 Oak St, Hammond, LA", "lat": 30.5070, "lon": -90.4650 },
+  { "stop": "Madisonville A", "address": "111 River Rd, Madisonville, LA", "lat": 30.3650, "lon": -90.2330 },
+  { "stop": "Madisonville B", "address": "222 Lakeview Dr, Madisonville, LA", "lat": 30.3680, "lon": -90.2400 },
+  { "stop": "Slidell A", "address": "333 Bayou Ln, Slidell, LA", "lat": 30.2770, "lon": -89.7810 },
+  { "stop": "Slidell B", "address": "444 Magnolia St, Slidell, LA", "lat": 30.2800, "lon": -89.7850 },
+  { "stop": "Biloxi A", "address": "555 Ocean Blvd, Biloxi, MS", "lat": 30.3960, "lon": -88.8840 },
+  { "stop": "Biloxi B", "address": "666 Beach Ave, Biloxi, MS", "lat": 30.3980, "lon": -88.8890 },
+  { "stop": "Biloxi C", "address": "777 Gulf St, Biloxi, MS", "lat": 30.4000, "lon": -88.8930 }
+]

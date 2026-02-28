@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delivery Dashboard Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="login-container">
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <h3>Or Register</h3>
+  <input type="text" id="regUsername" placeholder="New Username">
+  <input type="password" id="regPassword" placeholder="New Password">
+  <button onclick="register()">Register</button>
+</div>
+
+<script src="app.js"></script>
+<script>
+initDB();
+
+async function login(){
+  const u = document.getElementById("username").value.trim();
+  const p = document.getElementById("password").value.trim();
+  if(!u||!p) return alert("Enter username & password");
+  const users = await getAll("users");
+  const user = users.find(x=>x.username===u && x.password===p);
+  if(user){
+    localStorage.setItem("currentUser", u);
+    window.location.href="routes.html";
+  }else alert("Invalid login");
+}
+
+async function register(){
+  const u = document.getElementById("regUsername").value.trim();
+  const p = document.getElementById("regPassword").value.trim();
+  if(!u||!p) return alert("Enter username & password");
+  const users = await getAll("users");
+  if(users.find(x=>x.username===u)) return alert("User exists");
+  await addData("users",{ username:u, password:p });
+  alert("Registered! You can now login.");
+}
+</script>
+</body>
+</html>

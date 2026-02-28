@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DayNight Vending Dispatch Dashboard</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+body { margin:0; font-family: Arial, sans-serif; background:#f4f6f8; display:flex; height:100vh; }
+.sidebar {
+  width:200px; background:#111; color:white; display:flex; flex-direction:column; padding-top:20px;
+}
+.sidebar button {
+  background:none; border:none; color:white; padding:12px 20px; text-align:left; font-size:16px; cursor:pointer; transition:0.2s;
+}
+.sidebar button:hover, .sidebar button.active { background:#333; }
+.main { flex:1; padding:20px; overflow-y:auto; }
+h3 { margin-top:10px; }
+#map { height:400px; border-radius:8px; margin-bottom:15px; }
+input, select, button { margin:5px 2px; padding:6px 8px; font-size:14px; border-radius:4px; border:1px solid #ccc; }
+button.action { background:#111; color:white; border:none; cursor:pointer; transition:0.2s; }
+button.action:hover { background:#333; }
+.stopBox { border:1px solid #ddd; padding:10px; margin-bottom:10px; border-radius:5px; background:#fafafa; }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <button class="tabBtn active" data-tab="routesTab">Routes & Deliveries</button>
+  <button class="tabBtn" data-tab="inventoryTab">Inventory</button>
+  <button class="tabBtn" data-tab="financeTab">Finance & Gas</button>
+  <button class="tabBtn" data-tab="settingsTab">Settings</button>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+  <!-- LOGIN -->
+  <div id="loginSection">
+    <h3>Login</h3>
+    <input id="loginUser" placeholder="Username">
+    <input id="loginPass" type="password" placeholder="Password">
+    <button>Login</button>
+  </div>
+
+  <!-- ROUTES & DELIVERIES -->
+  <div id="routesTab" style="display:none;">
+    <h3>Create Route</h3>
+    <input id="newRouteName" placeholder="Route Name">
+    <button class="action" onclick="addRoute()">Add Route</button>
+
+    <h3>Select Route</h3>
+    <select id="routeSelect" onchange="displayRoute()"></select>
+
+    <h3>Add Stop</h3>
+    <input id="stopName" placeholder="Stop Name">
+    <input id="stopAddress" placeholder="Address">
+    <button class="action" onclick="addStop()">Add Stop</button>
+
+    <button class="action" onclick="optimizeRoute()">Optimize Route</button>
+    <button class="action" onclick="startTracking()">Start GPS</button>
+    <button class="action" onclick="stopTracking()">Stop GPS</button>
+
+    <div id="map"></div>
+    <div id="routeList"></div>
+  </div>
+
+  <!-- INVENTORY -->
+  <div id="inventoryTab" style="display:none;">
+    <h3>Inventory / Stock</h3>
+    <select id="inventorySelect"></select>
+    <input type="number" id="stockAmount" placeholder="Amount">
+    <button class="action" onclick="distributeStockUI()">Distribute to Stop</button>
+    <button class="action" onclick="addInventoryPrompt()">Add Inventory Item</button>
+  </div>
+
+  <!-- FINANCE & GAS -->
+  <div id="financeTab" style="display:none;">
+    <h3>Finance & Gas Dashboard</h3>
+    <button class="action" onclick="recordFinanceUI()">Record Finance for Route</button>
+    <button class="action" onclick="addGasUI()">Add Gas Usage</button>
+    <div id="financeList" style="margin-top:10px;"></div>
+    <div id="gasList" style="margin-top:10px;"></div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div id="settingsTab" style="display:none;">
+    <h3>Settings</h3>
+    <p>Future admin settings here.</p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+<script>
+// Tab navigation
+const tabs = document.querySelectorAll('.tabBtn');
+tabs.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tabBtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.main > div').forEach(div=>div.style.display='none');
+    document.getElementById(btn.dataset.tab).style.display='block';
+  });
+});
+</script>
+</body>
+</html>
